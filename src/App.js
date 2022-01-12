@@ -55,10 +55,6 @@ function App() {
           let tmp2 = j2_height; 
           j1.style.height = tmp2+"px";
           j2.style.height = tmp+"px";
-          // animate order change
-          // await sleep(1000) 
-          // j1.style.background = "#F; 
-          // j2.style.background = "#74EE66";  
         }
         console.log("cycle");
  
