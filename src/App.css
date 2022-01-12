@@ -43,3 +43,17 @@
   float: left;
   margin-right:auto */ 
 }
+
+
+@media only screen and (max-width: 600px) {
+  #sort_buttons button, #slider button{
+    display: block; 
+    width: 90px;
+    margin: 4px;
+    height: 30px;
+  }
+
+  #dark #bars{
+    height: 60vh;
+  }
+}

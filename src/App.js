@@ -10,9 +10,11 @@ function App() {
   const [values, setValues] = useState([]);
 
   // creates an array on page load
-  useEffect(() => {
-    if (values.length != 100) {
-      populateArray(100)
+  useEffect(() => { 
+    const vw = Math.ceil(Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0) / 11)
+    if (values.length != vw) {
+      populateArray(vw)
+      
     }
 
   });
@@ -92,7 +94,7 @@ function App() {
           <Button variant="primary" className={sort_type === "quick" ? 'active' : ''} onClick={() => setSortType("quick")}>Quick</Button>{' '}
         </div>
         <div id="slider">
-          <Button variant="success" onClick={() => populateArray(100)}>SHUFFLE</Button>{' '}
+          <Button variant="success" onClick={() => window.location.reload()}>SHUFFLE</Button>{' '}
           <Button variant="success" onClick={sort} >SORT</Button>{' '}
           {/* <input type="range" min="5" max="100" value="99" id="myRange"/>  */}
         </div>
