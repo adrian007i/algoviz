@@ -57,17 +57,12 @@ function App() {
           let tmp2 = j2_height; 
           j1.style.height = tmp2+"px";
           j2.style.height = tmp+"px";
-        }
-        console.log("cycle");
- 
- 
-        
+        }  
         await sleep(.01) 
 
         j1.style.background = "#eee"; 
         j2.style.background = "#eee"; 
-      } 
-      console.log("sq");   
+      }    
     }
  
     return "Bubble Sorted!"
