@@ -56,4 +56,17 @@
   #dark #bars{
     height: 60vh;
   }
+
+  #range_label{
+    margin-bottom:15px
+  }
+}
+
+
+
+#range_label{
+  position: relative;
+  top: 10px;
+  right: 90px;
+  font-size: 12px;;
 }

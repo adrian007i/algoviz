@@ -1,22 +1,22 @@
 import './App.css';
 import { Navbar, Button, Container, ThemeProvider } from 'react-bootstrap';
 import Bar from "./Bar"
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
 
 function App() {
 
   // state to keep track of the array and sort type
   const [sort_type, setSortType] = useState("bubble");
   const [values, setValues] = useState([]);
+  const [disable, setDisable] = React.useState(false);
+  const [speed, setSpeed] = React.useState(98);
 
   // creates an array on page load
-  useEffect(() => { 
+  useEffect(() => {
     const vw = Math.ceil(Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0) / 11)
     if (values.length != vw) {
-      populateArray(vw)
-      
+      populateArray(vw);
     }
-
   });
 
   // generates a new random array
@@ -29,56 +29,102 @@ function App() {
   }
 
 
-  const sort = async () => { 
+  const sort = async () => {
 
-    if(sort_type === "bubble")
+    setDisable(true)
+    if (sort_type === "bubble")
       console.log(await bubble());
+
+    else if (sort_type === "select")
+      console.log(await selection());
+
+    setDisable(false)
   }
 
 
-  async function bubble() {
+  async function bubble() { 
 
     let values = document.getElementsByClassName("bar");
 
     for (let i = 0; i < values.length; i++) {
 
-      for (let j = 0; j < values.length - (i + 1); j++) { 
+      for (let j = 0; j < values.length - (i + 1); j++) {
         let j1 = values[j];
-        let j2 = values[j+1];
+        let j2 = values[j + 1];
 
-        j1.style.background = "#74EE66"; 
-        j2.style.background = "#74EE66"; 
+        j1.style.background = "#0d6efd";
+        j2.style.background = "#0d6efd";
+        await sleep((100.01 - speed)  * 10)
 
         let j1_height = parseInt(j1.style.height);
         let j2_height = parseInt(j2.style.height);
- 
-        if (j1_height > j2_height) {  
-          let tmp = j1_height;
-          let tmp2 = j2_height; 
-          j1.style.height = tmp2+"px";
-          j2.style.height = tmp+"px";
-        }  
-        await sleep(.01) 
 
-        j1.style.background = "#eee"; 
-        j2.style.background = "#eee"; 
-      }    
+        if (j1_height > j2_height) {
+          let tmp = j1_height;
+          let tmp2 = j2_height;
+          j1.style.height = tmp2 + "px";
+          j2.style.height = tmp + "px";
+          j1.style.background = "#FB1818";
+          j2.style.background = "#FB1818";
+          await sleep((100.01 - speed)  * 10)
+        } 
+
+        j1.style.background = "#eee";
+        j2.style.background = "#eee";
+      }
+      values[ values.length - (i + 1)].style.background = "#74EE66"
     }
- 
+
     return "Bubble Sorted!"
-  } 
+  }
+
+  async function selection() {
+    let values = document.getElementsByClassName("bar");
+
+    for (let i = 0; i < values.length - 1; i++) {
+      let min = [parseInt(values[i].innerHTML), i];
+      values[i].style.background = "#FB1818";
+
+
+      for (let j = i + 1; j < values.length; j++) {
+        values[j].style.background = "#0d6efd";
+        let jValue = parseInt(values[j].innerHTML);
+        await sleep((100.01 - speed)  * 10);
+
+        // update min
+        if (jValue < min[0]) {
+          values[min[1]].style.background = "#eee";
+          min = [jValue, j]; 
+          values[j].style.background = "#FB1818"; 
+        }else{
+          values[j].style.background = "#eee";
+        }
+        
+      }
+
+      values[i].style.background = "#eee";
+      // swap values 
+      values[min[1]].style.height = (parseInt(values[i].innerHTML) * 3) + "px";
+      values[min[1]].innerHTML = values[i].innerHTML;
+      values[min[1]].style.background = "#eee";
+
+      values[i].style.height = min[0] * 3 + "px";
+      values[i].innerHTML = min[0];
+      values[i].style.background = "#74EE66";
+    }
+
+    values[values.length -1].style.background = "#74EE66";
+
+    return "Selection Sort Complete"
+  }
 
   async function sleep(millis) {
     return new Promise(resolve => setTimeout(resolve, millis));
-}
+  }
 
   return (
     <div className="App" id="dark">
 
-      {/* <label class="switch">
-        <input type="checkbox" checked />
-        <div class="slider"></div>
-      </label> */}
       <Navbar bg="dark" variant="dark">
 
         <div id="sort_buttons">
@@ -89,9 +135,12 @@ function App() {
           <Button variant="primary" className={sort_type === "quick" ? 'active' : ''} onClick={() => setSortType("quick")}>Quick</Button>{' '}
         </div>
         <div id="slider">
+          <input type="range" id="speed" name="volume" min="1" max="100" defaultValue={speed} onChange={(e) => setSpeed(e.target.value)} disabled={disable}  />
+          <label htmlFor="volume" id="range_label">Speed</label>
+          <Button variant="success" onClick={sort} disabled={disable}  >SORT</Button>{' '}
           <Button variant="success" onClick={() => window.location.reload()}>SHUFFLE</Button>{' '}
-          <Button variant="success" onClick={sort} >SORT</Button>{' '}
-          {/* <input type="range" min="5" max="100" value="99" id="myRange"/>  */}
+
+
         </div>
       </Navbar>
 
