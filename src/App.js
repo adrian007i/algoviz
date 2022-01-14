@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
     const vw = Math.ceil(Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0) / 11)
     if (values.length != vw) {
-      populateArray(vw); 
+      populateArray(vw);
     }
   });
 
@@ -29,6 +29,7 @@ function App() {
     setValues(values)
   }
 
+  // shuffles a new array
   const shuffle = () => {
 
     let elements = document.getElementsByClassName("bar");
@@ -36,31 +37,36 @@ function App() {
     populateArray(Math.ceil(Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0) / 11))
   }
 
+  // On click of sort button
   const sort = async () => {
+
+    let values = document.getElementsByClassName("bar");
 
     setDisable(true)
     if (sort_type === "bubble")
-      console.log(await bubble());
+      console.log(await bubble(values));
 
     else if (sort_type === "select")
-      console.log(await selection());
+      console.log(await selection(values));
 
     else if (sort_type === "insert")
-      console.log(await insertion());
+      console.log(await insertion(values));
+    else if (sort_type === "merge")
+      console.log(await mergeSort(values));
 
     setDisable(false)
   }
 
-  async function bubble() {
-
-    let values = document.getElementsByClassName("bar");
-
+  // bubble sort algorithm
+  async function bubble(values) {
+ 
     for (let i = 0; i < values.length; i++) {
 
       for (let j = 0; j < values.length - (i + 1); j++) {
         let j1 = values[j];
         let j2 = values[j + 1];
 
+        // focus color of first n & n+1 blocks
         j1.style.background = "#0d6efd";
         j2.style.background = "#0d6efd";
         await sleep((100.01 - speed) * 10)
@@ -68,6 +74,7 @@ function App() {
         let j1_height = parseInt(j1.style.height);
         let j2_height = parseInt(j2.style.height);
 
+        // checks if block n is greater that block n+1.  If so, swap
         if (j1_height > j2_height) {
           let tmp = j1_height;
           let tmp2 = j2_height;
@@ -78,29 +85,32 @@ function App() {
           await sleep((100.01 - speed) * 10)
         }
 
+        // change back block to default background
         j1.style.background = "#eee";
         j2.style.background = "#eee";
       }
+      // update the block as solved
       values[values.length - (i + 1)].style.background = "#74EE66"
     }
-
     return "Bubble Sorted!"
   }
 
-  async function selection() {
-    let values = document.getElementsByClassName("bar");
+  // selection sort algorithm
+  async function selection(values) { 
 
     for (let i = 0; i < values.length - 1; i++) {
+
+      // default the min the the ith bar.  Here we store the index and value
       let min = [parseInt(values[i].innerHTML), i];
       values[i].style.background = "#FB1818";
 
-
+      // loop the rest of the array to find if there is a smaller value than the default min
       for (let j = i + 1; j < values.length; j++) {
         values[j].style.background = "#0d6efd";
         let jValue = parseInt(values[j].innerHTML);
         await sleep((100.01 - speed) * 10);
 
-        // update min
+        // if a min is found. update the min
         if (jValue < min[0]) {
           values[min[1]].style.background = "#eee";
           min = [jValue, j];
@@ -112,7 +122,7 @@ function App() {
       }
 
       values[i].style.background = "#eee";
-      // swap values 
+      // swap the ith value with the min value we found in the inner loop
       values[min[1]].style.height = (parseInt(values[i].innerHTML) * 3) + "px";
       values[min[1]].innerHTML = values[i].innerHTML;
       values[min[1]].style.background = "#eee";
@@ -121,52 +131,92 @@ function App() {
       values[i].innerHTML = min[0];
       values[i].style.background = "#74EE66";
     }
-
+    // by default the last value will be sorted so we just set this block to sorted
     values[values.length - 1].style.background = "#74EE66";
 
     return "Selection Sort Complete"
   }
 
-  async function insertion() {
-    let values = document.getElementsByClassName("bar");
+  // insertion sort algorithm
+  async function insertion(values) { 
 
-   
-
-    for (let i = 0; i < values.length -1; i++) {   
+    for (let i = 0; i < values.length - 1; i++) {
 
       values[i].style.background = "#74EE66";
-      values[i+1].style.background = "#74EE66";
+      values[i + 1].style.background = "#74EE66";
 
-      if(parseInt(values[i+1].innerHTML) <  parseInt(values[i].innerHTML)){ 
+      // if the 1+ith value is less than the ith item
+      if (parseInt(values[i + 1].innerHTML) < parseInt(values[i].innerHTML)) {
 
         // loop to find appropriate spot
-        for (let j = i+1; j >= 1; j--) { 
-          
+        for (let j = i + 1; j >= 1; j--) {
+
           values[j].style.background = "red";
           await sleep((100.01 - speed) * 10);
-          let j0 = parseInt(values[j-1].innerHTML); 
+          let j0 = parseInt(values[j - 1].innerHTML);
           let j1 = parseInt(values[j].innerHTML);
 
-          // values[j].style.background = "rgb(255, 165, 0);";
-          // values[j-1].style.background = "rgb(255, 165, 0);";
-  
-          if(j1 < j0){  
-            values [j].innerHTML = j0;
-            values [j].style.height = (j0 * 3)+"px";
-            values[j-1].innerHTML = j1; 
-            values [j-1].style.height = (j1 * 3)+"px"; 
-            values[j].style.background = "#74EE66"; 
+          // if element at position j-1 is greater than element at positon j. we swap
+          if (j1 < j0) {
+            values[j].innerHTML = j0;
+            values[j].style.height = (j0 * 3) + "px";
+            values[j - 1].innerHTML = j1;
+            values[j - 1].style.height = (j1 * 3) + "px";
+            values[j].style.background = "#74EE66";
           }
-          else{
+          else {
+            // the appropriate spot was found so we break out of the inner loop.
             values[j].style.background = "#74EE66";
             break;
           }
         }
-      }  
+      }
     }
     return "Insertion sort completed!"
   }
 
+  function mergeSort(values) {
+
+    if (values.length < 2)
+      return values;
+
+    const half = Math.ceil(values.length / 2);
+    const firstHalf = values.splice(0, half);
+    const secondHalf = values.splice(-half);
+
+    return mergeArrays(mergeSort(firstHalf), mergeSort(secondHalf))
+  }
+
+  function mergeArrays(array1, array2) {
+
+    let merged = [];
+
+    // merge sorted arrays
+    while (array1.length + array2.length != 0) {
+      if (!array1[0]) {
+        merged = merged.concat(array2);
+        break;
+      }
+      else if (!array2[0]) {
+        merged = merged.concat(array1);
+        break;
+      }
+      else {
+        if (array1[0] < array2[0]) {
+          merged.push(array1[0]);
+          array1 = array1.slice(1)
+        } else {
+          merged.push(array2[0]);
+          array2 = array2.slice(1)
+        }
+      }
+    }
+
+    return merged
+
+  }
+
+  // used to delay the loops to show the animation on the bars
   async function sleep(millis) {
     return new Promise(resolve => setTimeout(resolve, millis));
   }
