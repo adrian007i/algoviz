@@ -16,6 +16,7 @@ function App() {
     const vw = Math.ceil(Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0) / 11)
     if (values.length != vw) {
       populateArray(vw);
+      // setValues([100,50])
     }
   });
 
@@ -175,20 +176,33 @@ function App() {
     return "Insertion sort completed!"
   }
 
-  function mergeSort(values) {
+  async function  mergeSort(values) {
 
     if (values.length < 2)
-      return values;
+      return values; 
+    
+    const firstHalf =   Array.prototype.slice.call(values,  0, Math.ceil(values.length / 2));
+    const secondHalf =  Array.prototype.slice.call(values,  -Math.floor(values.length / 2)); 
 
-    const half = Math.ceil(values.length / 2);
-    const firstHalf = values.splice(0, half);
-    const secondHalf = values.splice(-half);
+    // only used for the animation, not part of the algorithm
+    for (var i = 0; i < firstHalf.length; i++)  firstHalf[i].style.backgroundColor = "#eee";
+    for (var i = 0; i < secondHalf.length; i++)  secondHalf[i].style.backgroundColor = "#000";
+    await sleep((100.01 - speed) * 10)
 
-    return mergeArrays(mergeSort(firstHalf), mergeSort(secondHalf))
+    let merge = await mergeArrays(await mergeSort(firstHalf), await mergeSort(secondHalf)) ;  
+
+    // await sleep((100.01 - speed) * 10)
+    // only used for the animation, not part of the algorithm
+    for (var i = 0; i < merge.length; i++)  { 
+      values[i].style.height = (parseInt(merge[i].innerHTML) * 3)+"px"; 
+      values[i].style.innerHTML = merge[i].innerHTML;  
+      values[i].style.background ="rgb(116, 238, 102)"
+    }   
+    return merge;
   }
 
-  function mergeArrays(array1, array2) {
-
+  async function mergeArrays(array1, array2) {
+ 
     let merged = [];
 
     // merge sorted arrays
@@ -201,16 +215,23 @@ function App() {
         merged = merged.concat(array1);
         break;
       }
-      else {
-        if (array1[0] < array2[0]) {
+      else {  
+        if (parseInt(array1[0].innerHTML) < parseInt(array2[0].innerHTML)) {
           merged.push(array1[0]);
-          array1 = array1.slice(1)
+          array1 = array1.slice(1);  
         } else {
           merged.push(array2[0]);
-          array2 = array2.slice(1)
+          array2 = array2.slice(1);
         }
+        
       }
     }
+
+    // // not necessary for the algorithm.  Only used for visualization
+    // for (let i = 0; i < merged.length; i++) {
+    //   merged.style.height = merged;
+      
+    // }
 
     return merged
 
