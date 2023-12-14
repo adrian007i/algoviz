@@ -1,5 +1,5 @@
 import './App.css';
-import { Navbar, Button, Container, ThemeProvider } from 'react-bootstrap';
+import { Navbar, Button} from 'react-bootstrap';
 import Bar from "./Bar"
 import React, { useState, useEffect } from 'react';
 
@@ -14,7 +14,7 @@ function App() {
   // creates an array on page load
   useEffect(() => {
     const vw = Math.ceil(Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0) / 11)
-    if (values.length != vw) {
+    if (values.length !== vw) {
       populateArray(vw);
       // setValues([100,50])
     }
@@ -186,7 +186,7 @@ function App() {
 
     // only used for the animation, not part of the algorithm
     for (var i = 0; i < firstHalf.length; i++)  firstHalf[i].style.backgroundColor = "#eee";
-    for (var i = 0; i < secondHalf.length; i++)  secondHalf[i].style.backgroundColor = "#000";
+    for (var j = 0; i < secondHalf.length; i++)  secondHalf[i].style.backgroundColor = "#000";
     await sleep((100.01 - speed) * 10)
 
     let merge = await mergeArrays(await mergeSort(firstHalf), await mergeSort(secondHalf)) ;  
@@ -206,7 +206,7 @@ function App() {
     let merged = [];
 
     // merge sorted arrays
-    while (array1.length + array2.length != 0) {
+    while (array1.length + array2.length !== 0) {
       if (!array1[0]) {
         merged = merged.concat(array2);
         break;
@@ -252,7 +252,6 @@ function App() {
           <Button variant="primary" className={sort_type === "select" ? 'active' : ''} onClick={() => setSortType("select")}>Selection</Button>{' '}
           <Button variant="primary" className={sort_type === "insert" ? 'active' : ''} onClick={() => setSortType("insert")}>Insertion</Button>{' '}
           <Button variant="primary" className={sort_type === "merge" ? 'active' : ''} onClick={() => setSortType("merge")}>Merge</Button>{' '}
-          <Button variant="primary" className={sort_type === "quick" ? 'active' : ''} onClick={() => setSortType("quick")}>Quick</Button>{' '}
         </div>
         <div id="slider">
           <input type="range" id="speed" name="volume" min="1" max="100" defaultValue={speed} onChange={(e) => setSpeed(e.target.value)} disabled={disable} />
