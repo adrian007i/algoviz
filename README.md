@@ -1,5 +1,6 @@
 # Sorting Algorithms Visualizer with react
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 This web app allows you to visualize sorting algorithms at different speed.  This project was created with as an undergraduate project, which helped me to get a better understand of how sorting algorithms work. Users have the ability to visualize the following:
 ❇️ Bubble 
 ❇️ Insertion
