@@ -1,32 +1,86 @@
-# Sorting Algorithms Visualizer with react
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+<div align="center">
+    <br />
+    <a href="https://github.com/github_username/repo_name">
+         <img src="./sort.png" alt="Logo" width="80" height="80" />
+    </a>
 
-This web app allows you to visualize sorting algorithms at different speed.  This project was created with as an undergraduate project, which helped me to get a better understand of how sorting algorithms work. Users have the ability to visualize the following:  
-❇️ Bubble   
-❇️ Insertion  
-❇️ Selection  
-❇️ Merge  
+<h3 align="center" >AlgoViz</h3> 
+    <p align="center">
+        App allows you to visualize data structures & algorithm. 
+    </p> 
+</div>
+
+ 
+
+<div background="#eee">
+  <img src="./readme/demo.gif" width="100%"/> 
+</div>
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+<p>
+The Sorting Algorithms Visualizer is a web-based application built with vanilla JavaScript that offers an interactive way to explore and understand the inner workings of various sorting algorithms. This tool provides a dynamic visualization of how different sorting techniques process data, making it easier for users to grasp complex concepts.
+
+Key Features:
+
+1) Algorithm Selection: The visualizer supports multiple sorting algorithms, including Bubble Sort, Selection Sort, Insertion Sort, Merge Sort. 
+
+2) Speed Control: Users can adjust the speed of the visualization, allowing them to slow down or speed up the sorting process. This feature is particularly useful for educational purposes, as it helps in understanding each step of the algorithm.
+
+3) Responsive arrays: Based on the user screen size, random elements are generated accordingly.
+
+Future Enhancements:
+I plan to expand the visualizer by adding more a varity of algorithms and data structures like binary search, stacks and queues, linkedlist, graph traversal sliding window etc.   
+<br />
+<a href="https://adrian007i.github.io/Sorting-Algorithms-Visualizer/">Live App</a>
+·
+<a href="mailto:adrianjohn.developer@gmail.com?subject=I found a bug">Report Bug</a>
+·
+<a href="mailto:adrianjohn.developer@gmail.com?subject=I want a new feature">Request Feature</a>
+</p>  
+ 
+
+
+
+## Built With 
+This project is entirely built using vanilla JavaScript, HTML, and CSS with no libraries or frameworks.
+
+[![html][html]][html-url][![css][css]][css-url] [![js][js]][js-url]   
+
+<a>#data-structures &nbsp;</a>
+<a>#algorithms &nbsp; </a>
+<a>#visualization &nbsp; </a>
+<a>#html &nbsp; </a>
+<a>#css &nbsp; </a>
+<a>#javascript &nbsp;</a> 
+
+ 
+<!-- Developer Contact -->
+## Contact
+
+Feel free to reach out!
+
+### Adrian John
+
+[![linkedin][linkedin]][linkedin-url] 
+[![gmail][gmail]](mailto:adrianjohn.developer@gmail.com)
+</br> 
+#### My Email: adrianjohn.developer@gmail.com 
+
+#### My Website: [adrianjohn.dev](https://adrianjohn.dev)
+
+[linkedin]: https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white
+[linkedin-url]: https://linkedin.com/in/dev-adrian
+
+[gmail]:https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white
   
-## Tech  
-❇️ React  
-❇️ Data Structures & Algorithms  
-❇️ Git  
-❇️ GitHub Pages  
 
-## Installation
-1. **Install Node.js and npm:**
-   Download and install Node.js and npm from the official website: [Node.js](https://nodejs.org/)
+[html-url]: https://www.w3schools.com/html/
+[css-url]: https://www.w3schools.com/css/default.asp
+[js-url]: https://www.w3schools.com/js/default.asp
 
-2. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/adrian007i/Sorting-Algorithms-Visualizer.git
-   cd Sorting-Algorithms-Visualizer
-   ```
-3. **Install Dependencies:**
-   ```bash
-   npm install
-   ```
-4. **Run the Project**
-   ```bash
-   npm start
-   ```
+
+[html]:https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white
+[css]:https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white
+[js]: https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black 
+
