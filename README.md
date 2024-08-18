@@ -1,6 +1,6 @@
 <div align="center">
     <br />
-    <a href="https://github.com/github_username/repo_name">
+    <a href="https://github.com/adrian007i/algoviz">
          <img src="./sort.png" alt="Logo" width="80" height="80" />
     </a>
 
@@ -31,8 +31,8 @@ Key Features:
 
 Future Enhancements:
 I plan to expand the visualizer by adding more a varity of algorithms and data structures like binary search, stacks and queues, linkedlist, graph traversal sliding window etc.   
-<br />
-<a href="https://adrian007i.github.io/Sorting-Algorithms-Visualizer/">Live App</a>
+<br /> 
+<a href="https://adrian007i.github.io/algoviz/">Live App</a>
 ·
 <a href="mailto:adrianjohn.developer@gmail.com?subject=I found a bug">Report Bug</a>
 ·
