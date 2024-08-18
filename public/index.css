@@ -8,12 +8,23 @@ body {
  
 
 .active{
-  opacity: .3;
-  
+  border: 1px solid #eee;
+  background-color: #083374; 
 }
 
 nav{
   display: flex;  
+  background-color: #222;
+  height: 60px;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 1000px;
+  margin:auto;
+}
+
+.disabled{ 
+  pointer-events: none;
+  opacity: .5;
 }
  
 nav button{

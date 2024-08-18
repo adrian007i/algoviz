@@ -24,7 +24,7 @@ const generateBars = (values) => {
 
 
 // shuffles a new array
-const shuffle = () => {
+const shuffle = () => { 
 
   let elements = document.getElementsByClassName("bar");
   for (var i = 0; i < elements.length; i++)  elements[i].style.backgroundColor = "#eee";
@@ -38,6 +38,9 @@ const sort = async () => {
   let bars = document.getElementsByClassName('bar');
   let speed = parseInt(document.getElementById('speed').value); 
 
+  // disable controls
+  document.getElementsByTagName('nav')[0].classList.add('disabled'); 
+
   // setDisable(true)
   if (sort_type === "bubble")
     console.log(await bubble(bars, speed));
@@ -50,7 +53,8 @@ const sort = async () => {
   else if (sort_type === "merge")
     console.log(await mergeSort(bars, speed));
 
-  // setDisable(false)
+  // enable controls
+  document.getElementsByTagName('nav')[0].classList.remove('disabled'); 
 }
 
 // bubble sort algorithm
