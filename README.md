@@ -13,7 +13,7 @@
  
 
 <div background="#eee">
-  <img src="./readme/demo.gif" width="100%"/> 
+  <img src="./demo.gif" width="100%;"/> 
 </div>
 
 <!-- ABOUT THE PROJECT -->
