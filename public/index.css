@@ -5,7 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #333;
+  color: #eee;
 }
+ 
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -67,4 +70,70 @@ input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
+}
+
+
+.App {
+  min-height: 100vh; 
+}
+
+#slider{
+   position:absolute;
+   right: 5px;
+}
+
+#light{
+  color: #282c34;
+  background-color: #eee;
+}
+
+
+#dark .navbar{
+  border-bottom:2px solid #eee
+}
+
+#bars {  
+  display: flex;
+  flex-wrap: nowrap;
+  place-content: center;
+  align-items: end;
+  height: 80vh; 
+  margin: 20px;
+
+}
+
+
+#bars div{
+  background-color: #eee;
+  color: #333; 
+  width: 10px;
+  border: .1em solid #333;
+  font-size: 1px;  
+}
+
+
+@media only screen and (max-width: 600px) {
+  #sort_buttons button, #slider button{
+    display: block; 
+    width: 90px;
+    margin: 4px;
+    height: 30px;
+  }
+
+#bars{
+    height: 60vh;
+  }
+
+  #range_label{
+    margin-bottom:15px
+  }
+}
+
+
+
+#range_label{
+  position: relative;
+  top: 10px;
+  right: 90px;
+  font-size: 12px;;
 }
