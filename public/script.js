@@ -1,26 +1,8 @@
-// import './App.css';
-// import { Navbar, Button} from 'react-bootstrap';
-// import Bar from "../src/Bar"
-// import React, { useState, useEffect } from 'react';
-
-// function App() {
-
-//   // state to keep track of the array and sort type
-//   const [sort_type, setSortType] = useState("bubble");
-//   const [values, setValues] = useState([]);
-//   const [disable, setDisable] = React.useState(false);
-//   const [speed, setSpeed] = React.useState(98);
-
-//   // creates an array on page load
-//   useEffect(() => {
-//     const vw = Math.ceil(Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0) / 11)
-//     if (values.length !== vw) {
-//       populateArray(vw);
-//       // setValues([100,50])
-//     }
-//   });
-
-let valuess;
+const setSortType = (e) =>{ 
+  document.getElementsByClassName('active')[0].classList.remove('active');
+  e.classList.add("active");
+  
+}
 
 // generates a new random array
 const populateArray = (n) => {
@@ -29,7 +11,6 @@ const populateArray = (n) => {
   for (let i = 0; i < n; i++) {
     values[i] = Math.ceil(Math.random() * 100) + 1
   }
-  valuess = values
   generateBars(values);
 }
 
@@ -53,9 +34,9 @@ const shuffle = () => {
 // On click of sort button
 const sort = async () => {
 
-  const sort_type = document.querySelector(`[name="sort"]:checked`).value;
+  const sort_type = document.getElementsByClassName('active')[0].id;  
   let bars = document.getElementsByClassName('bar');
-  let speed = 100;
+  let speed = parseInt(document.getElementById('speed').value); 
 
   // setDisable(true)
   if (sort_type === "bubble")
@@ -190,28 +171,28 @@ async function insertion(values, speed) {
   return "Insertion sort completed!"
 }
 
-async function mergeSort(values, speed) {
+async function  mergeSort(values, speed) {
 
   if (values.length < 2)
-    return values;
-
-  const firstHalf = Array.prototype.slice.call(values, 0, Math.ceil(values.length / 2));
-  const secondHalf = Array.prototype.slice.call(values, -Math.floor(values.length / 2));
+    return values; 
+  
+  const firstHalf =   Array.prototype.slice.call(values,  0, Math.ceil(values.length / 2));
+  const secondHalf =  Array.prototype.slice.call(values,  -Math.floor(values.length / 2)); 
 
   // only used for the animation, not part of the algorithm
   for (var i = 0; i < firstHalf.length; i++)  firstHalf[i].style.backgroundColor = "#eee";
-  for (var j = 0; i < secondHalf.length; i++)  secondHalf[i].style.backgroundColor = "#000";
-  await sleep((100.01 - speed) * 10)
+  for (var j = 0; j < secondHalf.length; j++)  secondHalf[j].style.backgroundColor = "#000";
+  await sleep((100.01 - speed) * 20)
 
-  let merge = await mergeArrays(await mergeSort(firstHalf), await mergeSort(secondHalf));
+  let merge = await mergeArrays(await mergeSort(firstHalf, speed), await mergeSort(secondHalf, speed)) ;  
 
   // await sleep((100.01 - speed) * 10)
   // only used for the animation, not part of the algorithm
-  for (var i = 0; i < merge.length; i++) {
-    values[i].style.height = (parseInt(merge[i].innerHTML) * 3) + "px";
-    values[i].style.innerHTML = merge[i].innerHTML;
-    values[i].style.background = "rgb(116, 238, 102)"
-  }
+  for (var i = 0; i < merge.length; i++)  { 
+    values[i].style.height = (parseInt(merge[i].innerHTML) * 3)+"px"; 
+    values[i].style.innerHTML = merge[i].innerHTML;  
+    values[i].style.background ="rgb(116, 238, 102)"
+  }   
   return merge;
 }
 
@@ -229,22 +210,22 @@ async function mergeArrays(array1, array2) {
       merged = merged.concat(array1);
       break;
     }
-    else {
+    else {  
       if (parseInt(array1[0].innerHTML) < parseInt(array2[0].innerHTML)) {
         merged.push(array1[0]);
-        array1 = array1.slice(1);
+        array1 = array1.slice(1);  
       } else {
         merged.push(array2[0]);
         array2 = array2.slice(1);
       }
-
+      
     }
   }
 
   // // not necessary for the algorithm.  Only used for visualization
   // for (let i = 0; i < merged.length; i++) {
   //   merged.style.height = merged;
-
+    
   // }
 
   return merged
