@@ -33,6 +33,7 @@ const shuffle = () => {
 
 // On click of sort button
 const sort = async () => {
+  shuffle();
 
   const sort_type = document.getElementsByClassName('active')[0].id;  
   let bars = document.getElementsByClassName('bar');

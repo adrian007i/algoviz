@@ -5,6 +5,22 @@ body {
   background-color: #333;
   color: #fff;
 }
+
+*{
+  padding: 0px;
+  margin: 0px;
+  outline: none;
+}
+
+body,html{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+nav{
+  background-color: #222;
+}
  
 
 .active{
@@ -12,14 +28,14 @@ body {
   background-color: #083374; 
 }
 
-nav{
+nav, nav>div{
   display: flex;  
-  background-color: #222;
-  height: 60px;
-  align-items: center;
-  justify-content: space-around;
-  max-width: 1000px;
-  margin:auto;
+  flex-direction: row;
+  flex-wrap: wrap; 
+}
+
+nav{
+  justify-content: space-between;
 }
 
 .disabled{ 
@@ -28,7 +44,7 @@ nav{
 }
  
 nav button{
-  margin-right: 20px;  
+  margin: 5px;  
   font-size: 1em;  
   cursor: pointer !important;
   padding: 10px; 
@@ -63,4 +79,35 @@ nav .controls>button{
   width: 10px;
   border: .1em solid #333;
   font-size: 1px;  
+}
+
+#speed_label{
+  text-align: center;
+  line-height: 1px;
+  font-size: .8em;
+}
+
+
+@media only screen and (max-width: 800px) {
+  nav{  
+    justify-content: center;
+  }
+
+  #bars{
+    height: 60vh; 
+  }
+ 
+}
+
+@media only screen and (max-width: 500px) {
+  nav button{
+    margin: 2px;  
+    font-size: .8em;   
+    padding: 5px; 
+    color: #fff;    
+    width: 80px;  
+    border-radius: 0px;
+  }
+   
+ 
 }

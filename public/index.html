@@ -9,31 +9,36 @@
 </head>
 
 <body>
-  <nav> 
-    <div>
-      <button id="bubble" onclick="setSortType(this)" class="option active">Bubble</button>
-    </div>
-    <div>
-      <button id="select" onclick="setSortType(this)" class="option">Selection</button>
-    </div>
-    <div>
-      <button id="insert" onclick="setSortType(this)" class="option">Insertion</button>
-    </div>
-    <div>
-      <button id="merge" onclick="setSortType(this)" class="option">Merge</button>
-    </div>  
+  <nav>
+    <div id="left">
+      <div>
+        <button id="bubble" onclick="setSortType(this)" class="option active">Bubble</button>
+      </div>
+      <div>
+        <button id="select" onclick="setSortType(this)" class="option">Selection</button>
+      </div>
+      <div>
+        <button id="insert" onclick="setSortType(this)" class="option">Insertion</button>
+      </div>
+      <div>
+        <button id="merge" onclick="setSortType(this)" class="option">Merge</button>
+      </div>
 
-    <div class="controls">
-      <button onclick="shuffle()">Shuffle</button>
     </div>
-    <div class="controls">
-      <button onclick="sort()">Sort</button>
-    </div>
+    <div id="right">
 
-    <div class="controls">  
-      <input type="range" id="speed" min="1" max="100" value="98" />
-    </div>
+      <div class="controls">
+        <input type="range" id="speed" min="1" max="100" value="98"  style="margin-top: 15px;"/>
+        <div id="speed_label">speed</div>
 
+      </div>
+      <div class="controls">
+        <button onclick="sort()">Sort</button>
+      </div>
+      <div class="controls">
+        <button onclick="shuffle()">Shuffle</button>
+      </div>
+    </div>
   </nav>
 
   <div id="bars">
